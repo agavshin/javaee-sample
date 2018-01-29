@@ -43,6 +43,9 @@ public class RabbitMQProducer {
         String queueName = channel.queueDeclare().getQueue();
         channel.queueBind(queueName, AmqpConstants.EXCHANGE_NAME, "");
 
+        /*
+          think this code should be replaced to another place
+         */
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
