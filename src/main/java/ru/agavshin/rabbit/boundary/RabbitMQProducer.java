@@ -39,6 +39,9 @@ public class RabbitMQProducer {
 
         Connection connection = factory.newConnection(executorService);
         Channel channel = connection.createChannel();
+        channel.exchangeDeclare(AmqpConstants.EXCHANGE_NAME, "topic", true);
+        String queueName = channel.queueDeclare().getQueue();
+        channel.queueBind(queueName, AmqpConstants.EXCHANGE_NAME, "");
 
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
@@ -47,7 +50,7 @@ public class RabbitMQProducer {
                 logger.info("Message has been received. {}", message.toString());
             }
         };
-        channel.basicConsume(AmqpConstants.QUEUE_NAME, true, consumer);
+        channel.basicConsume(queueName, true, consumer);
 
         return channel;
     }

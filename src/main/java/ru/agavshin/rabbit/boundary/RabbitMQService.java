@@ -19,8 +19,7 @@ public class RabbitMQService {
     private Channel channel;
 
     public void sendMessage(Serializable message) throws IOException {
-        channel.queueDeclare(AmqpConstants.QUEUE_NAME, false, false, false, null);
-        channel.basicPublish("", AmqpConstants.QUEUE_NAME, null, SerializationUtils.serialize(message));
+        channel.basicPublish(AmqpConstants.EXCHANGE_NAME, "", null, SerializationUtils.serialize(message));
         logger.info("Message has been sent.");
     }
 }

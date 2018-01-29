@@ -9,4 +9,5 @@ public interface AmqpConstants {
     int PORT = 5672;
 
     String QUEUE_NAME = "javaee-test-queue";
+    String EXCHANGE_NAME = "demo-queue-out";
 }
