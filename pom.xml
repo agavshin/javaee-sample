@@ -11,5 +11,6 @@
     
     <modules>
         <module>javaee-rabbitmq</module>
+        <module>spring-rabbitmq</module>
     </modules>
 </project>
