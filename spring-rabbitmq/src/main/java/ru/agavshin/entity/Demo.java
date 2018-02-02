@@ -1,4 +1,4 @@
-package ru.agavshin.entity.Demo;
+package ru.agavshin.entity;
 
 public class Demo {
 
