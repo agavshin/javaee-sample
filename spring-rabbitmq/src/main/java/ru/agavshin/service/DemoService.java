@@ -40,7 +40,7 @@ public class DemoService {
         processor.output().send(MessageBuilder.withPayload(json.getBytes()).build());
     }
 
-    @StreamListener(Processor.INPUT)
+    @StreamListener(value = Processor.INPUT, condition = "[type='demo']")
     public void receive(String json) {
         Demo demo = new Gson().fromJson(json, Demo.class);
         logger.info("Demo has been received. {}", demo);
